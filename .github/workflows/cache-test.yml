@@ -10,23 +10,25 @@ jobs:
   cache-dependencies:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # Step that primes the cache
-      - name: Prime cache-dfe2cdf
-        id: prime-cache-dfe2cdf   # <-- this ID is what we reference later
+      # Step 3: Prime the cache
+      - name: prime-cache-dfe2cdf
+        id: prime-cache-dfe2cdf
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: cache-dfe2cdf
 
-      # Step that echoes cache hit/miss
+      # Step 4: Echo cache hit/miss
       - name: Echo cache result
         run: |
           if [ "${{ steps.prime-cache-dfe2cdf.outputs.cache-hit }}" == 'true' ]; then
@@ -35,6 +37,7 @@ jobs:
             echo "Cache miss"
           fi
 
+      # Step 5: Install dependencies
       - name: Install dependencies
         run: npm install
 
