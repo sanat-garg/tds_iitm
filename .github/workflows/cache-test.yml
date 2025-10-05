@@ -18,13 +18,15 @@ jobs:
         with:
           node-version: '18'
 
+      # Step that primes the cache
       - name: Prime cache-dfe2cdf
-        id: prime-cache-dfe2cdf
+        id: prime-cache-dfe2cdf   # <-- this ID is what we reference later
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: cache-dfe2cdf
 
+      # Step that echoes cache hit/miss
       - name: Echo cache result
         run: |
           if [ "${{ steps.prime-cache-dfe2cdf.outputs.cache-hit }}" == 'true' ]; then
