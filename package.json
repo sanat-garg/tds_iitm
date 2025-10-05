@@ -1,0 +1,23 @@
+{
+  "name": "tds_iitm",
+  "version": "1.0.0",
+  "description": "<!--email_off-->23f2000294@ds.study.iitm.ac.in<!--/email_off-->",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanat-garg/tds_iitm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanat-garg/tds_iitm/issues"
+  },
+  "homepage": "https://github.com/sanat-garg/tds_iitm#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
