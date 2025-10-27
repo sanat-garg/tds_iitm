@@ -7,24 +7,28 @@ on:
   workflow_dispatch: # Allows manual triggering
 
 jobs:
-  commit:
+  daily-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # This is crucial for push access
     
     steps:
-    - name: Checkout for 23f2000294@ds.study.iitm.ac.in daily commit
+    - name: Checkout repository for 23f2000294@ds.study.iitm.ac.in
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
         
-    - name: Create or update commit file
+    - name: Create or update daily log file
       run: |
-        echo "Automated daily commit for 23f2000294@ds.study.iitm.ac.in" > daily_log.txt
-        date >> daily_log.txt
+        echo "Daily automated commit for 23f2000294@ds.study.iitm.ac.in" > daily_log.txt
+        echo "Timestamp: $(date -u)" >> daily_log.txt
+        echo "Workflow run: ${{ github.run_id }}" >> daily_log.txt
         
-    - name: Configure git and push
+    - name: Configure git and push changes
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "23f2000294@ds.study.iitm.ac.in"
+        git config --local user.name "GitHub Actions Daily Commit"
         git add daily_log.txt
-        git commit -m "Daily commit: $(date +'%Y-%m-%d %H:%M:%S') - 23f2000294@ds.study.iitm.ac.in"
+        git commit -m "Daily automated commit: $(date -u +'%Y-%m-%d %H:%M:%S UTC') - 23f2000294@ds.study.iitm.ac.in"
         git push
