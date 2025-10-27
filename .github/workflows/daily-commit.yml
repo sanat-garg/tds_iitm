@@ -1,34 +1,33 @@
-name: Daily Auto Commit
+name: "Daily Commit - 23f2000294@ds.study.iitm.ac.in"
 
 on:
   schedule:
-    # Runs daily at 12:00 PM UTC
-    - cron: '0 12 * * *'
-  workflow_dispatch: # Allows manual triggering
+    - cron: '0 12 * * *'  # Daily at 12:00 PM UTC
+  workflow_dispatch:
 
 jobs:
   daily-commit:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # This is crucial for push access
+      contents: write
     
     steps:
     - name: Checkout repository for 23f2000294@ds.study.iitm.ac.in
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
         
-    - name: Create or update daily log file
+    - name: Update daily commit file
       run: |
-        echo "Daily automated commit for 23f2000294@ds.study.iitm.ac.in" > daily_log.txt
-        echo "Timestamp: $(date -u)" >> daily_log.txt
-        echo "Workflow run: ${{ github.run_id }}" >> daily_log.txt
+        echo "Daily automated commit" > commit_log.txt
+        echo "Email: 23f2000294@ds.study.iitm.ac.in" >> commit_log.txt
+        echo "Timestamp: $(date -u)" >> commit_log.txt
+        echo "Run ID: ${{ github.run_id }}" >> commit_log.txt
         
     - name: Configure git and push changes
       run: |
         git config --local user.email "23f2000294@ds.study.iitm.ac.in"
-        git config --local user.name "GitHub Actions Daily Commit"
-        git add daily_log.txt
-        git commit -m "Daily automated commit: $(date -u +'%Y-%m-%d %H:%M:%S UTC') - 23f2000294@ds.study.iitm.ac.in"
+        git config --local user.name "GitHub Actions"
+        git add commit_log.txt
+        git commit -m "Daily commit: $(date -u +'%Y-%m-%d %H:%M:%S') - 23f2000294@ds.study.iitm.ac.in" || exit 0
         git push
