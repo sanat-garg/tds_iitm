@@ -17,14 +17,14 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Update daily commit file
+    - name: Update daily commit file  23f2000294@ds.study.iitm.ac.in
       run: |
         echo "Daily automated commit" > commit_log.txt
         echo "Email: 23f2000294@ds.study.iitm.ac.in" >> commit_log.txt
         echo "Timestamp: $(date -u)" >> commit_log.txt
         echo "Run ID: ${{ github.run_id }}" >> commit_log.txt
         
-    - name: Configure git and push changes
+    - name: Configure git and push changes  23f2000294@ds.study.iitm.ac.in
       run: |
         git config --local user.email "23f2000294@ds.study.iitm.ac.in"
         git config --local user.name "GitHub Actions"
