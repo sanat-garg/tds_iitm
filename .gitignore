@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pytest cache
+.pytest_cache/
+
+# Node.js dependencies
+node_modules/
+
+# VS Code
+.vscode/
+.devcontainer/
